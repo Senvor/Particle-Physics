@@ -1,39 +1,84 @@
-// Constants
-const G = 6.67e-11
-const SCALE = 0.001
 
-// Array to store particles
-let particles = []
+const G = 35;
+const SCALE = 0.08;
+const SOFTENING = 12;
 
-function setup () {
-  createCanvas(400, 400)
+const RESTITUTION = 0.9;
+const WALL_RESTITUTION = 0.85;
 
-  // Loop and create each particles
-  for (let i = 0; i < 10; i++) {
-    let x = random(0, width)
-    let y = random(0, height)
-    let mass = random(2e8, 1e9)
+const FIXED_DT = 1 / 120;
+const MAX_STEPS = 8;
 
-    // Add the new particles to the list
-    particles.push(new Particle(x, y, mass))
+const PARTICLE_COUNT = 100;
+
+let particles = [];
+let accumulator = 0;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  frameRate(60);
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    const mass = random(2000, 12000);
+    const radius = Math.sqrt(mass / PI) * SCALE;
+
+    const x = random(radius, width - radius);
+    const y = random(radius, height - radius);
+
+    particles.push(new Particle(x, y, mass));
   }
 }
 
-function draw () {
+function simulate(dt) {
+  for (const particle of particles) {
+    particle.acceleration.set(0, 0);
+  }
 
-    // Set the background of the canvas to dark gray
-    background(51, 51, 51)
-
-    // Loop all particles twice
-    for (const particleA of particles)
-        for (const particleB of particles)
-            if (particleA !== particleB) particleA.physics(particleB)
-
-    // Loop particles again
-    for (const particle of particles) {
-        // Update the particle with the new acceleration and velocity
-        particle.update()
-        // Draw the particle on the canvas
-        particle.draw()
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      particles[i].physics(particles[j]);
     }
+  }
+
+  for (const particle of particles) {
+    particle.integrate(dt);
+  }
+
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      particles[i].collide(particles[j]);
+    }
+  }
+
+  for (const particle of particles) {
+    particle.handleWalls();
+  }
+}
+
+function draw() {
+  background(25);
+
+  accumulator += Math.min(deltaTime / 1000, 0.05);
+
+  let steps = 0;
+
+  while (accumulator >= FIXED_DT && steps < MAX_STEPS) {
+    simulate(FIXED_DT);
+    accumulator -= FIXED_DT;
+    steps++;
+  }
+
+  for (const particle of particles) {
+    particle.draw();
+  }
+}
+
+// Automatically resize the canvas
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+
+  // Keep particles inside the resized canvas
+  for (const particle of particles) {
+    particle.handleWalls();
+  }
 }
