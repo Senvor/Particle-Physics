@@ -31,8 +31,8 @@
         update() {
             let dt = deltaTime / 1000
             console.log(dt, this.acceleration.mag(), this.velocity.mag())
-            this.velocity = this.velocity.add(this.acceleration.copy().mult(dt))
-            this.position = this.position.add(this.velocity.copy().mult(dt))
+            this.velocity.add(this.acceleration.copy().mult(dt))
+            this.position.add(this.velocity.copy().mult(dt))
             this.acceleration.set(0, 0)
         }
     }

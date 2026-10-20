@@ -1,4 +1,4 @@
-const G = 1; // Gravitational constant
+const G = 1000; // Gravitational constant
 let particles = [];
 
 function setup() {
