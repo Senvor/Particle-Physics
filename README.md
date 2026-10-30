@@ -1,6 +1,8 @@
 # Particle Physics
 A basic Particle Physics simulation and rendering using p5.js.
 
+![Hackatime](https://hackatime.hackclub.com/api/v1/badge/U0B4TE3MN1G/Senvor/Particle-Physics)
+
 Live Preview:
 https://particle-physics.vercel.app/
 
