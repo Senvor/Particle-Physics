@@ -10,10 +10,18 @@ function setup() {
 
 function spawn() {
     particles = []
-    for (let i = 0; i < 100; i++) {
+    let tries = 0
+    while (particles.length < 100 && tries++ < 5000) {
         let angle = random(TWO_PI)
-        let r = random(20, 250)
-        let p = new Particle(width / 2 + cos(angle) * r, height / 2 + sin(angle) * r, random(1, 5))
+        let r = random(60, min(width, height) * 0.45)
+        let x = width / 2 + cos(angle) * r
+        let y = height / 2 + sin(angle) * r
+
+        // skip spots that are too close to another particle
+        let tooClose = particles.some(p => dist(x, y, p.position.x, p.position.y) < 30)
+        if (tooClose) continue
+
+        let p = new Particle(x, y, random(1, 20))
         p.velocity = createVector(-sin(angle), cos(angle)).mult(sqrt(G * 300 / (r + 50)) * 0.5) // spin
         particles.push(p)
     }
