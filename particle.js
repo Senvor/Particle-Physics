@@ -1,5 +1,5 @@
 class Particle {
-    constructor(x, y, mass) {
+    constructor (x, y, mass) {
         this.position = createVector(x, y)
         this.velocity = createVector(0, 0)
         this.acceleration = createVector(0, 0)
@@ -15,16 +15,14 @@ class Particle {
     }
 
     applyForce(force) {
-        // a = F / m (copy so the caller's vector isn't changed)
         this.acceleration.add(p5.Vector.div(force, this.mass))
     }
 
     physics(particle) {
         let direction = p5.Vector.sub(particle.position, this.position)
-        // softening keeps close encounters from exploding to infinity
-        let distSq = direction.magSq() + SOFTENING * SOFTENING
+        let distance = direction.magSq() + 64 // +64 so close particles dont explode
         direction.normalize()
-        let strength = G * (this.mass * particle.mass) / distSq
+        let strength = G * (this.mass * particle.mass) / distance
         this.applyForce(direction.mult(strength))
     }
 

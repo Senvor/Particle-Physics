@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #05060a;
+  font-family: monospace;
+}
+
+#hud {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  padding: 10px 14px;
+  color: #ddd;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 212, 121, 0.3);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+#hud h1 {
+  margin: 0 0 4px;
+  font-size: 16px;
+  color: #ffd479;
+}
+
+#hud p {
+  margin: 2px 0;
+  font-size: 12px;
+}
