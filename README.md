@@ -4,7 +4,7 @@ A gravity sandbox in the browser: hundreds of particles pull on each other and f
 
 ![Hackatime](https://hackatime.hackclub.com/api/v1/badge/U0B4TE3MN1G/Senvor/Particle-Physics)
 
-Live Preview: https://particle-physics.vercel.app/
+Live Preview: https://particlephysics.senvor.dev/
 
 ## Description
 
@@ -39,7 +39,7 @@ cd Particle-Physics
 
 ### Executing program
 
-- Easiest: open the live preview at https://particle-physics.vercel.app/
+- Easiest: open the live preview at https://particlephysics.senvor.dev/
 - Or run it locally:
   1. Start a local server in the folder
   2. Open the address it prints in your browser
@@ -68,7 +68,7 @@ Then go to http://localhost:8000
 - **p5.js** - drawing and vectors
 - **JavaScript** - the physics and particle logic
 - **HTML + CSS** - the page and the HUD box
-- **Vercel** - hosting
+- **GitHub Pages** - hosting
 
 ## AI Usage
 
