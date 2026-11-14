@@ -111,10 +111,6 @@ Particle-Physics/
 - Using delta time so the speed doesn't depend on frame rate
 - Giving particles a starting spin so they actually orbit
 
-## AI Usage
-
-AI helped with parts of this project (some of the sim fixes and README wording). I reviewed, tested and tweaked everything myself.
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE). You're free to use, modify, and share it, as long as the original copyright notice is kept.
