@@ -8,9 +8,9 @@ A gravity sandbox in the browser: 100 particles pull on each other and form litt
 
 ![Hackatime](https://hackatime.hackclub.com/api/v1/badge/U0B4TE3MN1G/Senvor/Particle-Physics)
 
-Live Preview: https://particlephysics.senvor.dev/
+**[Live Preview](https://particlephysics.senvor.dev/)**
 
-<img src="images/preview.png" alt="Particle Physics running in the browser" width="800" />
+<a href="https://particlephysics.senvor.dev/"><img src="images/preview.png" alt="Particle Physics running in the browser" width="800" /></a>
 
 </div>
 
